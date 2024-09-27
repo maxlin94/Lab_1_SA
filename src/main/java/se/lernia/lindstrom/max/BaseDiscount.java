@@ -1,7 +1,9 @@
 package se.lernia.lindstrom.max;
 
 public abstract class BaseDiscount implements Discount {
-    Discount nextDiscount;
+    private final Discount nextDiscount;
+    protected abstract boolean isApplicable(Product product);
+    protected abstract double calculateDiscount(Product product);
 
     BaseDiscount(Discount nextDiscount) {
         this.nextDiscount = nextDiscount;
@@ -13,6 +15,7 @@ public abstract class BaseDiscount implements Discount {
         if (isApplicable(product)) {
             discount = calculateDiscount(product);
         }
+
         if (nextDiscount != null) {
             discount += nextDiscount.apply(product);
         }
@@ -23,17 +26,12 @@ public abstract class BaseDiscount implements Discount {
     public String getDescription(Product product) {
         String description = "";
         if (isApplicable(product)) {
-            description = getClass().getSimpleName() + " applied.";
+            description = getClass().getSimpleName() + " applicerad.";
         }
 
         if (nextDiscount != null) {
-            description += "\n" + nextDiscount.getDescription(product) ;
+            description += "\n" + nextDiscount.getDescription(product);
         }
-
         return description;
     }
-
-    protected abstract boolean isApplicable(Product product);
-
-    protected abstract double calculateDiscount(Product product);
 }
