@@ -1,7 +1,7 @@
 package se.lernia.lindstrom.max;
 
 public class MilkDiscount extends BaseDiscount {
-    MilkDiscount(Discount discount) {
+    public MilkDiscount(Discount discount) {
         super(discount);
     }
 

@@ -1,7 +1,7 @@
 package se.lernia.lindstrom.max;
 
 public class QuantityDiscount extends BaseDiscount {
-    QuantityDiscount(Discount discount) {
+    public QuantityDiscount(Discount discount) {
         super(discount);
     }
 
